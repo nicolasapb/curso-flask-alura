@@ -1,0 +1,14 @@
+{% macro capa(capa_jogo) %}
+    <div class="col-md-4">
+    <figure class="figure">
+      <img class="figure-img img-fluid"
+           src="{{ url_for('imagem', nome_arquivo=capa_jogo) }}" alt="capa do jogo">
+      <figcaption class="figure-caption">
+        <label class="fileContainer">
+          Capa do Jogo
+          <input type="file" name="arquivo" id="arquivo" accept=".jpg">
+        </label>
+      </figcaption>
+    </figure>
+    </div>
+{% endmacro %}

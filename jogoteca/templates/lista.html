@@ -1,0 +1,42 @@
+{% extends "template.html" %}
+{% block conteudo %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span class="navbar-brand">Jogoteca</span>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            {% if not session.usuario_logado %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('novo') }}">Adicionar</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+            </ul>
+            {% if session.usuario_logado %}
+            <a class="btn btn-outline-secondary my-2 my-lg-0" href="{{ url_for('modificar_usuario') }}">{{ session.usuario_logado | upper }}</a>
+            {% endif %}
+        </div>
+    </nav>
+    <table class="table table-striped table-bordered ">
+        <thead class="thead-default">
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Console</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jogo in jogos %}
+                <tr>
+                    <td>{{ jogo.nome }}</td>
+                    <td>{{ jogo.categoria }}</td>
+                    <td>{{ jogo.console }}</td>
+                    <td>
+                        <a href="{{ url_for('editar', id=jogo.id) }}">Editar</a>
+                        <a href="{{ url_for('deletar', id=jogo.id) }}">Deletar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

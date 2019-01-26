@@ -1,0 +1,14 @@
+{% extends "template.html" %}
+{% block conteudo %}
+    <form method="POST" action="{{ url_for('salvar_usuario') }}" class="col-md-6" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ usuario._id }}">
+        <p><label>usuário:</label> <input disabled class="form-control" type="text" name="usuario" required value="{{ usuario.id }}"></p>
+        <p><label>Nome:</label> <input class="form-control" type="text" name="nome" required value="{{ usuario.nome }}"></p>
+        <p><label>Sobrenome:</label> <input class="form-control" type="text" name="sobrenome" required value="{{ usuario.sobrenome }}"></p>
+        <p><label>email:</label> <input class="form-control" type="email" name="email" required value="{{ usuario.email }}"></p>
+        <p>
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <a class="btn btn-secondary" href="{{ url_for('index') }}">Voltar</a>
+        </p>
+    </form>
+{% endblock %}
